@@ -14,20 +14,31 @@
 // places, or events is intended or should be inferred.
 // ----------------------------------------------------------------------------------
 
-using Microsoft.AspNet.Identity.EntityFramework;
+using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Web;
 
 namespace GeekQuiz.Models
 {
-    // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
-    public class ApplicationUser : IdentityUser
+    public class TriviaOption
     {
-    }
+        [Key, Column(Order = 1), DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Id { get; set; }
 
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
-    {
-        public ApplicationDbContext()
-            : base("DefaultConnection")
-        {
-        }
+        [Required]
+        public string Title { get; set; }
+
+        [Key, Column(Order = 0), ForeignKey("TriviaQuestion")]
+        public int QuestionId { get; set; }
+
+        [JsonIgnore]
+        public virtual TriviaQuestion TriviaQuestion { get; set; }
+
+        [JsonIgnore]
+        public bool IsCorrect { get; set; }
     }
 }
