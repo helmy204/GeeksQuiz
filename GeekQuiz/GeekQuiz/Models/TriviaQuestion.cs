@@ -14,14 +14,11 @@
 // places, or events is intended or should be inferred.
 // ----------------------------------------------------------------------------------
 
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
-
 namespace GeekQuiz.Models
 {
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+
     public class TriviaQuestion
     {
         public int Id { get; set; }
